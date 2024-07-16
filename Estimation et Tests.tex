@@ -1,0 +1,377 @@
+\documentclass[11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usetheme{Copenhagen}
+\begin{document}
+	\author{Ahmed SEFDINE}
+
+	\title{Estimation et Tests}
+	%\subtitle{}
+    %\includegraphics[width=0.2]{../../Pictures/Logo_UADB}
+	\institute{UNIVERSITE ALIOUNE DIOP DE BAMBEY}
+	%\date{}
+	%\subject{}
+	\setbeamercovered{transparent}
+	\setbeamertemplate{navigation symbols}{}
+	\begin{frame}[plain]
+		\maketitle
+	\end{frame}
+	
+	\begin{frame}{I. Soit X une variable aléatoire absolument continue de densité}
+		{I.1. Vérifions que $f_\theta$ est bien une densité de probabilité  }
+		Pour déterminer la densité de la fonction $f_\theta(x)$, nous devons vérifier deux conditions : que $f_\theta(x)$ est une fonction positive et que l'intégrale de $f_\theta(x)$ sur l'ensemble des réels est égale à 1.
+		
+		La fonction $f_\theta(x)$ est définie comme suit :
+		\[ f_\theta(x) = \frac{\theta}{x^{1+\theta}} \mathbb{I}(x > 1) \]
+		
+		Pour $x > 1$, $f_\theta(x)$ est positive car $\theta > 1$. Cela signifie que $f_\theta(x)$ est une fonction positive sur son domaine de définition.
+		
+		Maintenant, pour calculer l'intégrale de $f_\theta(x)$ sur l'ensemble des réels, nous devons diviser l'intégrale en deux parties : une partie pour $x \leq 1$ et une autre partie pour $x > 1$.
+		
+	\end{frame}
+	
+	\begin{frame}
+		
+		Pour $x \leq 1$, $f_\theta(x)$ est nulle car la fonction indicatrice $\mathbb{I}(x > 1)$ est égale à zéro dans cette région.
+		
+		Ainsi, nous pouvons calculer l'intégrale de $f_\theta(x)$ uniquement pour $x > 1$ :
+		
+		\[ \int_{1}^{\infty} f_\theta(x) \, dx = \int_{1}^{\infty} \frac{\theta}{x^{1+\theta}} \, dx \]
+		
+		Pour résoudre cette intégrale, nous pouvons utiliser les propriétés de l'intégration. La primitive de $\frac{\theta}{x^{1+\theta}}$ par rapport à $x$ est :
+		
+		\[ F(x) = -\frac{1}{x^\theta} \]
+		
+		Appliquons cette primitive à l'intégrale :
+		
+		\[ \int_{1}^{\infty} \frac{\theta}{x^{1+\theta}} \, dx = \left[ -\frac{1}{x^\theta} \right] \Bigg|_{1}^{\infty} = \left(0 - \left(-\frac{1}{1^\theta}\right)\right) = 1 \]
+		
+	\end{frame}
+	\begin{frame}
+		Nous avons donc montré que l'intégrale de $f_\theta(x)$ sur l'ensemble des réels est égale à 1. Par conséquent, $f_\theta(x)$ satisfait la condition de normalisation requise pour être une densité.
+	
+	En conclusion, la fonction $f_\theta(x) = \frac{\theta}{x^{1+\theta}} \mathbb{I}(x > 1)$ avec $\theta > 1$ est une densité valide.
+\end{frame}
+
+\begin{frame}{I.2. Détermination de la fonction de répartition $F_\theta$ de $X$}
+	La fonction de répartition $F_\theta$ de la variable aléatoire $X$ correspondante est définie comme suit :
+	
+	\[ F_\theta(x) = P(X \leq x) \]
+	
+	Pour $x \leq 1$, la fonction de répartition est nulle, car $P(X \leq x)$ est égale à zéro lorsque $x$ est inférieur ou égal à 1.
+	
+	Pour $x > 1$, nous devons calculer la probabilité $P(X \leq x)$ en intégrant la densité $f_\theta(t)$ de $\theta$ à 1 jusqu'à $x$ :
+	
+	\[ F_\theta(x) = \int_{1}^{x} f_\theta(t) \, dt \]
+	
+	Nous avons la densité $f_\theta(x) = \frac{\theta}{x^{1+\theta}} \mathbb{I}(x > 1)$.
+		
+\end{frame}
+
+\begin{frame}
+Appliquons la formule d'intégration pour calculer la fonction de répartition :
+
+\[ F_\theta(x) = \int_{1}^{x} \frac{\theta}{t^{1+\theta}} \, dt \]
+
+Pour résoudre cette intégrale, nous pouvons utiliser les propriétés de l'intégration. La primitive de $\frac{\theta}{t^{1+\theta}}$ par rapport à $t$ est :
+
+\[ F(t) = -t^{-\theta} \]
+
+Appliquons cette primitive à l'intégrale :
+
+\[ F_\theta(x) = \left[-t^{-\theta}\right] \Bigg|_{1}^{x} = -\left(x^{-\theta}\right) - \left(-1^{-\theta}\right) = 1 - x^{-\theta} \]
+	
+\end{frame}
+
+\begin{frame}
+	Ainsi, la fonction de répartition $F_\theta(x)$ de la variable aléatoire $X$ est donnée par :
+	
+	\[ F_\theta(x) = 1 - x^{-\theta} \quad \text{pour } x > 1 \]
+	\[ F_\theta(x) = 0 \quad \text{pour } x \leq 1 \]
+\end{frame}
+\begin{frame}{En déduirons que la médiane $M_e = 2^{1/\theta}$}
+	Pour trouver la médiane $M_e$, nous devons déterminer la valeur de $x$ pour laquelle la fonction de répartition $F_\theta(x)$ atteint la moitié, c'est-à-dire $F_\theta(M_e) = \frac{1}{2}$.
+	
+	Nous avons déjà établi que pour $x > 1$, la fonction de répartition $F_\theta(x)$ est donnée par :
+	
+	\[ F_\theta(x) = 1 - x^{-\theta} \]
+	
+	Nous devons donc résoudre l'équation suivante pour trouver la médiane :
+	
+	\[ 1 - M_e^{-\theta} = \frac{1}{2} \]
+	
+
+\end{frame}
+\begin{frame}
+	Réorganisons cette équation pour isoler $M_e = 2^{1/\theta}$:
+
+\[ M_e^{-\theta} = 1 - \frac{1}{2} \]
+\[ M_e^{-\theta} = \frac{1}{2} \]
+\[ 2(M_e^{-\theta}) = 1 \]
+\[ M_e^{-\theta} = \frac{1}{2} \]
+\[ (M_e^{-\theta})^{-1} = (1/2)^{-1} \]
+\[ (M_e^{-\theta})^{1/\theta} = 2^1 \]
+\[ M_e = 2^{1/\theta} \]
+
+Ainsi, la médiane $M_e$ de la variable aléatoire $X$ est donnée par $M_e = 2^{1/\theta}$.
+\end{frame}
+\begin{frame}{I.3. Loi de probabilité de $Y = \log(X)$}
+	Pour déterminer la loi de probabilité de $Y = \log(X)$, nous allons utiliser une technique appelée la transformation des variables.
+	
+	Soit $Y = \log(X)$, où $X$ est une variable aléatoire avec une densité $f_\theta(x) = \frac{\theta}{x^{1+\theta}} \mathbb{I}(x > 1)$.
+	
+	Pour trouver la loi de probabilité de $Y$, nous devons trouver la fonction de densité de probabilité de $Y$, que nous noterons $g(y)$.
+	
+	Nous avons la relation entre $Y$ et $X$: $Y = \log(X)$.
+	
+	Pour trouver la fonction de densité de probabilité $g(y)$, nous devons d'abord trouver la fonction de répartition de $Y$, que nous noterons $G(y)$.
+	
+	La fonction de répartition $G(y)$ de $Y$ est donnée par:
+	
+	\[ G(y) = P(Y \leq y) \]
+	
+	
+\end{frame}
+
+\begin{frame}
+	$P(Y \leq y)$ est équivalent à $P(\log(X) \leq y)$, ce qui peut être réécrit comme suit:
+	
+	\[ P(X \leq e^y) \]
+	
+	où $e$ est la base du logarithme naturel.
+	
+	Maintenant, nous pouvons utiliser la fonction de répartition $F_\theta(x)$ de $X$ pour exprimer la probabilité $P(X \leq e^y)$:
+	
+	\[ P(X \leq e^y) = F_\theta(e^y) \]
+	
+	Donc, la fonction de répartition $G(y)$ de $Y$ est:
+	
+	\[ G(y) = F_\theta(e^y) \]
+	
+	
+\end{frame}
+\begin{frame}
+		Maintenant, pour obtenir la fonction de densité de probabilité $g(y)$ de $Y$, nous devons dériver $G(y)$ par rapport à $y$:
+	
+	\[ g(y) = \frac{d}{dy} [G(y)] \]
+	
+	\[ g(y) = \frac{d}{dy} [F_\theta(e^y)] \]
+	
+	Nous devons prendre en compte la relation entre $y$ et $x$:
+	
+	\[ y = \log(x) \Rightarrow x = e^y \]
+	
+	En utilisant cette relation, nous pouvons réécrire $g(y)$:
+	
+	\[ g(y) = \frac{d}{dy} [F_\theta(x)] \]
+	
+	
+\end{frame}
+\begin{frame}
+	
+	Maintenant, nous avons trouvé que $F_\theta(x)$ est égal à $1 - (x^{-\theta})$ pour $x > 1$. Nous allons dériver cette expression par rapport à $x$:
+	
+	\[ \frac{d}{dx} [F_\theta(x)] = \frac{d}{dx} [1 - (x^{-\theta})] \]
+	
+	\[ g(y) = \frac{d}{dy} [F_\theta(x)] = \frac{d}{dy} [1 - (x^{-\theta})] \]
+	
+	Cependant, nous devons exprimer la dérivée par rapport à $y$ au lieu de $x$. Utilisons la relation $y = \log(x)$:
+	
+	\[ x = e^y \]
+	
+	Remplaçons $x$ par $e^y$ dans l'expression de $g(y)$:
+	
+	\[ g(y) = \frac{d}{dy} [1 - ((e^y)^{-\theta})] \]
+
+\end{frame}
+
+\begin{frame}
+	
+	Simplifions cela davantage:
+	
+	\[ g(y) = \frac{d}{dy} [1 - (e^{-\theta y})] \]
+	
+	Maintenant, nous pouvons dériver cette expression par rapport à $y$:
+	
+	\[ g(y) = \frac{d}{dy} [1] - \frac{d}{dy} [e^{-\theta y}] \]
+	
+	\[ g(y) = 0 - (-\theta e^{-\theta y}) \]
+	
+	\[ g(y) = \theta e^{-\theta y} \]
+	
+	Donc, la fonction de densité de probabilité $g(y)$ de $Y = \log(X)$ est donnée par:
+	
+	\[ g(y) = \theta e^{-\theta y} \]
+	
+	La loi de probabilité de $Y$ est une loi exponentielle avec un paramètre $\theta$.
+	
+\end{frame}
+
+\begin{frame}{I.4. On note par  S(X ; $\theta$) le score de $X$ . }
+	{(a) Calculons $S(X ; \theta)$ :}
+	Le score $S(X ; \theta)$ de $X$ est défini comme la dérivée logarithmique de la densité $f_\theta(x)$ par rapport au paramètre $\theta$. Pour calculer $S(X ; \theta)$, nous allons prendre la dérivée logarithmique de $f_\theta(x)$ par rapport à $\theta$.
+	
+	La densité $f_\theta(x)$ est donnée par $f_\theta(x) = \frac{\theta}{x^{1+\theta}} \mathbb{I}(x > 1)$.
+	
+	Appliquons la dérivée logarithmique :
+	
+	\[ S(X ; \theta) = \frac{d}{d\theta} [\ln(f_\theta(x))] \]
+	
+	\[ S(X ; \theta) = \frac{d}{d\theta} [\ln\left(\frac{\theta}{x^{1+\theta}}\right)] \]	
+\end{frame}
+\begin{frame}
+		Utilisons les propriétés du logarithme pour simplifier l'expression :
+	
+	\[ S(X ; \theta) = \frac{d}{d\theta} [\ln(\theta) - \ln(x^{1+\theta})] \]
+	
+	\[ S(X ; \theta) = \frac{d}{d\theta} [\ln(\theta) - (1+\theta)\ln(x)] \]
+	
+	Maintenant, nous pouvons prendre la dérivée par rapport à $\theta$ :
+	
+	\[ S(X ; \theta) = \frac{d}{d\theta} [\ln(\theta)] - \frac{d}{d\theta} [(1+\theta)\ln(x)] \]
+	
+	La dérivée de $\ln(\theta)$ par rapport à $\theta$ est simplement $\frac{1}{\theta}$.
+	
+	La dérivée de $(1+\theta)\ln(x)$ par rapport à $\theta$ est $\ln(x)$.
+	
+	\[ S(X ; \theta) = \frac{1}{\theta} - \ln(x) \]
+	
+	Ainsi, le score $S(X ; \theta)$ de $X$ est donné par $S(X ; \theta) = \frac{1}{\theta} - \ln(x)$.
+	
+\end{frame}
+\begin{frame}{(b) Représentation de sa variance ?}
+		 La variance du score représente la sensibilité de l'estimateur (ici, $\theta$) aux fluctuations des données. Elle mesure la dispersion ou la variabilité de l'estimateur. Une variance plus élevée indique une plus grande sensibilité aux fluctuations et donc une incertitude accrue dans l'estimation.
+		
+\end{frame}
+\begin{frame}{(c) Calculons cette variance}
+		 Pour calculer la variance du score, nous devons prendre la variance de $S(X ; \theta)$ en utilisant la densité $f_\theta(x)$.
+	
+	La variance du score est donnée par :
+	
+	\[ \text{Var}(S(X ; \theta)) = E[(S(X ; \theta))^2] - (E[S(X ; \theta)])^2 \]
+	
+	Pour calculer la variance, nous devons trouver $E[(S(X ; \theta))^2]$ et $E[S(X ; \theta)]$.
+	
+	$E[(S(X ; \theta))^2]$ est l'espérance du carré du score et peut être calculée en intégrant $(S(X ; \theta))^2$ multiplié par la densité $f_\theta(x)$ sur l'ensemble des réels :
+\end{frame}
+\begin{frame}
+		\[ E[(S(X ; \theta))^2]= \int_{1}^{\infty} (S(X ; \theta))^2 f_\theta(x) dx \]
+	
+	En substituant $S(X ; \theta) = \frac{1}{\theta} - \ln(x)$ :
+	
+	\[ E[(S(X ; \theta))^2] = \int_{1}^{\infty} \left(\frac{1}{\theta} - \ln(x)\right)^2 \frac{\theta}{x^{1+\theta}} dx \]
+	
+	Pour calculer cette intégrale et trouver $E[(S(X ; \theta))^2]$, des manipulations mathématiques supplémentaires sont nécessaires. Cependant, sans connaître la valeur précise de $\theta$, il est difficile de donner une expression exacte pour la variance du score.	
+\end{frame}
+
+
+\begin{frame}{II. On considère un échantillon $\hat{X} = (X_1, X_2, \dots, X_n)$ extrait de la variable aléatoire $X$}
+	{II.1.En utilisant la question I.4. :}	
+	{(a) Donnons le score de l’échantillon S($\hat{X}; \theta$)}
+		
+		Le score de l'échantillon $S(\hat{X} ; \theta)$ est la somme des scores individuels pour chaque observation dans l'échantillon. En utilisant la réponse de la question I.4(a), nous pouvons écrire :
+		
+		\[ S(\hat{X} ; \theta) = S(X_1 ; \theta) + S(X_2 ; \theta) + \ldots + S(X_n ; \theta) \]
+		
+		Le score de l'échantillon est donc la somme des scores individuels pour chaque $X_i$ dans $\hat{X}$.		
+\end{frame}
+\begin{frame}{(b) Calculons l’information de Fisher $I_n(\theta)$}
+		
+	L'information de Fisher $I_n(\theta)$ est une mesure de la précision de l'estimation du paramètre $\theta$ basée sur l'échantillon. Elle est définie comme la variance du score, c'est-à-dire :
+	
+	\[ I_n(\theta) = \text{Var}(S(X_\text{e} ; \theta)) \]
+	
+	Pour calculer l'information de Fisher, nous devons trouver la variance du score de l'échantillon $S(\hat{X} ; \theta)$. Cela implique de prendre en compte la covariance entre les scores individuels pour chaque $X_i$ dans $\hat{X}$.
+	
+	La variance du score de l'échantillon est donnée par :
+	
+	\[ \text{Var}(S(\hat{X} ; \theta)) = \text{Cov}(S(X_1 ; \theta), S(X_1 ; \theta)) + \text{Cov}(S(X_1 ; \theta), S(X_2 ; \theta)) + \ldots + \text{Cov}(S(X_n ; \theta), S(X_n ; \theta)) \]
+	
+	Dans le cas où les observations dans l'échantillon $\hat{X}$ sont indépendantes les unes des autres, les covariances entre les scores individuels seront nulles.
+\end{frame}	
+\begin{frame}
+	 Cela signifie que chaque score individuel est indépendant des autres, et par conséquent, la variance du score de l'échantillon sera simplement la somme des variances des scores individuels :
+	
+	\[ \text{Var}(S(\hat{X} ; \theta)) = \text{Var}(S(X_1 ; \theta)) + \text{Var}(S(X_2 ; \theta)) + \ldots + \text{Var}(S(X_n ; \theta)) \]
+	
+	Ainsi, l'information de Fisher $I_n(\theta)$ pour l'échantillon est la somme des variances des scores individuels pour chaque $X_i$ dans $\hat{X}$.	
+\end{frame}
+\begin{frame}{II.2. Déterminons $\hat{M_e}$ l’estimateur de maximum de vraisemblance de la médiane $M_e$.}
+	Pour déterminer l'estimateur de maximum de vraisemblance (EMV) de la médiane $M_e$, nous devons trouver la valeur de $\theta$ qui maximise la fonction de vraisemblance.
+	
+	La fonction de densité de probabilité de $X$ est donnée par $f_\theta(x) = \frac{\theta}{x^{1+\theta}}$ indicatrice de $(x > 1)$.
+	
+	La fonction de vraisemblance $L(\theta)$ pour un échantillon $\hat{X} = (X_1, X_2, \ldots, X_n)$ extrait de $X$ est le produit des densités de probabilité pour chaque observation dans l'échantillon :
+	
+	\[ L(\theta) = f_\theta(X_1) \times f_\theta(X_2) \times \ldots \times f_\theta(X_n) \]
+	
+	Remarque : Comme nous cherchons à estimer la médiane $M_e$, nous devons nous concentrer sur les valeurs de $X$ supérieures à 1.	
+\end{frame}
+\begin{frame}
+Pour simplifier les calculs, nous allons travailler avec les logarithmes de la fonction de vraisemblance, ce qui ne change pas l'emplacement du maximum :
+
+\[ \ln(L(\theta)) = \ln(f_\theta(X_1)) + \ln(f_\theta(X_2)) + \ldots + \ln(f_\theta(X_n)) \]
+
+\[ = \theta \ln(X_1) - (1 + \theta) \ln(X_1) + \theta \ln(X_2) - (1 + \theta) \ln(X_2) + \ldots + \theta \ln(X_n) - (1 + \theta) \ln(X_n) \]
+
+\[ = n\theta \ln\left(\prod_i X_i\right) - (1 + \theta) \sum_i \ln(X_i) \]
+
+où $\prod_i X_i$ représente le produit des $X_i$ dans l'échantillon $\hat{X}$ et $\sum_i \ln(X_i)$ représente la somme des logarithmes des $X_i$ dans l'échantillon.
+\end{frame}
+\begin{frame}
+Maintenant, nous prenons la dérivée de $\ln(L(\theta))$ par rapport à $\theta$ et l'égalons à zéro pour trouver le maximum de vraisemblance :
+
+\[ \frac{d}{d\theta} \ln(L(\theta)) = n \ln\left(\prod_i X_i\right) - n \ln\left(\prod_i X_i\right) - \sum_i \ln(X_i) = 0 \]
+
+\[ - \sum_i \ln(X_i) = 0 \]
+
+Cela signifie que la somme des logarithmes des $X_i$ est égale à zéro.
+
+\[ \sum_i \ln(X_i) = 0 \]	
+\end{frame}
+\begin{frame}
+	
+	Maintenant, nous pouvons exprimer $\theta$ en fonction de $M_e$, car $M_e = 2^{\frac{1}{\theta}}$ (comme nous l'avons démontré précédemment dans la question I.2) :
+	
+	\[ \ln(M_e) = \ln\left(2^{\frac{1}{\theta}}\right) \]
+	
+	\[ \ln(M_e) = \frac{1}{\theta} \ln(2) \]
+	
+	\[ \theta = \frac{\ln(2)}{\ln(M_e)} \]
+	
+	Ainsi, l'estimateur de maximum de vraisemblance (EMV) de la médiane $M_e$ est $\theta = \frac{\ln(2)}{\ln(M_e)}$.		
+\end{frame}
+\begin{frame}{II.3. Etudions sa normalité asymptotique.}
+	Pour étudier la normalité asymptotique de l'estimateur de maximum de vraisemblance (EMV) de la médiane $M_e$, nous allons utiliser le théorème central limite (TCL).
+	
+	Le TCL stipule que pour un échantillon suffisamment grand, la distribution de l'estimateur de maximum de vraisemblance se rapproche d'une distribution normale. Les conditions pour appliquer le TCL sont les suivantes :
+	
+	\begin{enumerate}
+		\item Les observations de l'échantillon doivent être indépendantes et identiquement distribuées (i.i.d.).
+		\item La fonction de densité de probabilité doit être suffisamment régulière.
+	\end{enumerate}
+	
+	Dans notre cas, nous avons un échantillon $\hat{X} = (X_1, X_2, \ldots, X_n)$ extrait de $X$, où $X$ suit une distribution avec une densité de probabilité $f_\theta(x) = \frac{\theta}{x^{1+\theta}}$ indicatrice de $(x > 1)$.	
+\end{frame}
+\begin{frame}
+	Pour étudier la normalité asymptotique, nous devons calculer la moyenne et la variance de l'EMV de la médiane $M_e$, qui est $\theta = \frac{\ln(2)}{\ln(M_e)}$ (comme nous l'avons trouvé dans la question II.2).
+	
+	La moyenne de l'EMV est donnée par :
+	
+	\[ E(\theta) = E\left(\frac{\ln(2)}{\ln(M_e)}\right) \]
+	
+	Cependant, sans connaître la distribution exacte de $M_e$, il est difficile de calculer cette moyenne de manière générale.
+	
+	La variance de l'EMV est donnée par :
+	
+	\[ \text{Var}(\theta) = \text{Var}\left(\frac{\ln(2)}{\ln(M_e)}\right) \]	
+\end{frame}
+\begin{frame}
+	Encore une fois, sans connaître la distribution exacte de $M_e$, il est difficile de calculer cette variance de manière générale.
+	
+	Cependant, nous pouvons dire que si les conditions du TCL sont satisfaites, alors pour un échantillon suffisamment grand, l'estimateur de maximum de vraisemblance de la médiane $M_e$ devrait suivre approximativement une distribution normale, avec une moyenne proche de $E(\theta)$ et une variance proche de $\text{Var}(\theta)$. Cela signifie que pour des échantillons suffisamment grands, nous pouvons utiliser des approximations normales pour construire des intervalles de confiance et effectuer des tests d'hypothèses sur $M_e$.
+	
+\end{frame}
+
+\end{document}
