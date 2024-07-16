@@ -1,12 +1,7 @@
-# Estimation et Tests
-
-## Description
-Ce document est une présentation intitulée "Estimation et Tests", créée par Ahmed SEFDINE dans le cadre de son travail à l'Université Alioune Diop de Bambey. La présentation explore divers aspects de la variable aléatoire continue, des fonctions de densité de probabilité, et des estimations basées sur les échantillons.
-
 ## Contenu de la Présentation
 
 ### Auteur
-**Ahmed SEFDINE**
+**AHMED SEFDINE**
 
 ### Titre
 **Estimation et Tests**
